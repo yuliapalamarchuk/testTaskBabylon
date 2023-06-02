@@ -1,5 +1,13 @@
 <template>
-  <canvas ref="bjsCanvas" width="1300" height="600" />
+  <div class="q-pa-md q-gutter-y-md column items-start">
+    <q-btn-group push>
+      <q-btn push label="Cursor" icon="near_me" />
+      <q-btn push label="Offset" icon="multiple_stop" />
+      <q-btn push label="Rotation" icon="360" />
+      <q-btn push label="Scaling" icon="aspect_ratio" />
+    </q-btn-group>
+  </div>
+  <canvas ref="bjsCanvas" width="1300" height="500" />
 </template>
 
 <script>
