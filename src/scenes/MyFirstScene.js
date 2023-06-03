@@ -11,6 +11,7 @@ import {
   RotationGizmo,
   PositionGizmo,
   ScaleGizmo,
+  GizmoManager,
 } from "@babylonjs/core";
 import * as BABYLON from "babylonjs";
 
@@ -38,43 +39,55 @@ const createScene = (canvas) => {
   const material = new StandardMaterial("sphere-material", scene);
   material.diffuseColor = Color3.Blue();
   sphere.material = material;
-  sphere.position.y = 1;
   //hello gizmo
-  const utilLayer = new UtilityLayerRenderer(scene);
+
+  const gizmoManager = new GizmoManager(scene);
 
   //visibility
   engine.runRenderLoop(() => {
     scene.render();
   });
 
+  //eventlistenerCursor
+  const cursorBtn = document.querySelector("#cursor_btn");
+  cursorBtn.addEventListener("click", () => {
+    cursorBtn.style.backgroundColor = "rgb(66,49,137)";
+    gizmoManager.positionGizmoEnabled = false;
+    gizmoManager.rotationGizmoEnabled = false;
+    gizmoManager.scaleGizmoEnabled = false;
+  });
+
   //eventlistenerOffset
   const offsetBtn = document.querySelector("#offset_btn");
+  const rotateBtn = document.querySelector("#rotation_btn");
+  const scaleBtn = document.querySelector("#scale_btn");
   offsetBtn.addEventListener("click", () => {
-    const gizmoOffset = new PositionGizmo(utilLayer);
-    gizmoOffset.attachedMesh = sphere;
-    gizmoOffset.updateGizmoRotationToMatchAttachedMesh = false;
-    gizmoOffset.updateGizmoPositionToMatchAttachedMesh = true;
+    gizmoManager.positionGizmoEnabled = !gizmoManager.positionGizmoEnabled;
     offsetBtn.style.backgroundColor = "rgb(66,49,137)";
+    if (gizmoManager.positionGizmoEnabled) {
+      gizmoManager.rotationGizmoEnabled = false;
+      gizmoManager.scaleGizmoEnabled = false;
+    }
   });
 
   //eventlistenerRotate
-  const rotateBtn = document.querySelector("#rotation_btn");
   rotateBtn.addEventListener("click", () => {
-    const gizmoRotate = new RotationGizmo(utilLayer);
-    gizmoRotate.attachedMesh = sphere;
-    gizmoRotate.updateGizmoRotationToMatchAttachedMesh = false;
-    gizmoRotate.updateGizmoPositionToMatchAttachedMesh = true;
+    gizmoManager.rotationGizmoEnabled = !gizmoManager.rotationGizmoEnabled;
     rotateBtn.style.backgroundColor = "rgb(66,49,137)";
+    if (gizmoManager.rotationGizmoEnabled) {
+      gizmoManager.positionGizmoEnabled = false;
+      gizmoManager.scaleGizmoEnabled = false;
+    }
   });
 
   //eventlistenerScale
-  const scaleBtn = document.querySelector("#scale_btn");
   scaleBtn.addEventListener("click", () => {
-    const gizmoScale = new ScaleGizmo(utilLayer);
-    gizmoScale.attachedMesh = sphere;
-    gizmoScale.updateGizmoRotationToMatchAttachedMesh = true;
-    gizmoScale.updateGizmoPositionToMatchAttachedMesh = true;
+    gizmoManager.scaleGizmoEnabled = !gizmoManager.scaleGizmoEnabled;
     scaleBtn.style.backgroundColor = "rgb(66,49,137)";
+    if (gizmoManager.scaleGizmoEnabled) {
+      gizmoManager.positionGizmoEnabled = false;
+      gizmoManager.rotationGizmoEnabled = false;
+    }
   });
 };
 

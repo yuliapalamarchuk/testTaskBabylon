@@ -31,7 +31,7 @@
       />
     </q-btn-group>
   </div>
-  <canvas ref="bjsCanvas" width="1300" height="500" />
+  <canvas ref="bjsCanvas" width="1200" height="500" />
 </template>
 
 <script>
@@ -51,6 +51,7 @@ export default {
 
     return {
       bjsCanvas,
+      shape: ref("line"),
     };
   },
 };
