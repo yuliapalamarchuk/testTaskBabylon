@@ -7,13 +7,12 @@ import {
   StandardMaterial,
   Color3,
   HemisphericLight,
-  UtilityLayerRenderer,
-  RotationGizmo,
-  PositionGizmo,
-  ScaleGizmo,
   GizmoManager,
+  ActionManager,
+  InterpolateValueAction,
 } from "@babylonjs/core";
 import * as BABYLON from "babylonjs";
+import { SetValueAction } from "babylonjs";
 
 const createScene = (canvas) => {
   //creating scene
@@ -33,23 +32,23 @@ const createScene = (canvas) => {
     { diameter: 2, segments: 32 },
     scene
   );
-
   sphere.rotation.z = Math.PI / 2;
   sphere.position.y = 1;
   const material = new StandardMaterial("sphere-material", scene);
   material.diffuseColor = Color3.Blue();
   sphere.material = material;
-  //hello gizmo
 
   const gizmoManager = new GizmoManager(scene);
-
   //visibility
   engine.runRenderLoop(() => {
     scene.render();
   });
 
-  //eventlistenerCursor
+  const offsetBtn = document.querySelector("#offset_btn");
+  const rotateBtn = document.querySelector("#rotation_btn");
+  const scaleBtn = document.querySelector("#scale_btn");
   const cursorBtn = document.querySelector("#cursor_btn");
+  //eventlistenerCursor
   cursorBtn.addEventListener("click", () => {
     cursorBtn.style.backgroundColor = "rgb(66,49,137)";
     gizmoManager.positionGizmoEnabled = false;
@@ -59,12 +58,7 @@ const createScene = (canvas) => {
     rotateBtn.style.backgroundColor = "rgb(255,255,255)";
     offsetBtn.style.backgroundColor = "rgb(255,255,255)";
   });
-
   //eventlistenerOffset
-  const offsetBtn = document.querySelector("#offset_btn");
-  const rotateBtn = document.querySelector("#rotation_btn");
-  const scaleBtn = document.querySelector("#scale_btn");
-
   offsetBtn.addEventListener("click", () => {
     gizmoManager.positionGizmoEnabled = !gizmoManager.positionGizmoEnabled;
     offsetBtn.style.backgroundColor = "rgb(66,49,137)";
@@ -76,7 +70,6 @@ const createScene = (canvas) => {
       cursorBtn.style.backgroundColor = "rgb(255,255,255)";
     }
   });
-
   //eventlistenerRotate
   rotateBtn.addEventListener("click", () => {
     gizmoManager.rotationGizmoEnabled = !gizmoManager.rotationGizmoEnabled;
@@ -89,7 +82,6 @@ const createScene = (canvas) => {
       cursorBtn.style.backgroundColor = "rgb(255,255,255)";
     }
   });
-
   //eventlistenerScale
   scaleBtn.addEventListener("click", () => {
     gizmoManager.scaleGizmoEnabled = !gizmoManager.scaleGizmoEnabled;
@@ -102,6 +94,25 @@ const createScene = (canvas) => {
       cursorBtn.style.backgroundColor = "rgb(255,255,255)";
     }
   });
+
+  sphere.actionManager = new ActionManager(scene);
+  sphere.actionManager
+    .registerAction(
+      new InterpolateValueAction(
+        ActionManager.OnPickTrigger,
+        material,
+        "diffuseColor",
+        new Color3("0, 0, 1")
+      )
+    )
+    .then(
+      new InterpolateValueAction(
+        ActionManager.OnPickTrigger,
+        material,
+        "diffuseColor",
+        Color3.Blue()
+      )
+    );
 };
 
 export { createScene };
