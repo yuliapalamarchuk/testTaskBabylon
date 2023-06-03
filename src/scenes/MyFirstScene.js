@@ -55,18 +55,25 @@ const createScene = (canvas) => {
     gizmoManager.positionGizmoEnabled = false;
     gizmoManager.rotationGizmoEnabled = false;
     gizmoManager.scaleGizmoEnabled = false;
+    scaleBtn.style.backgroundColor = "rgb(255,255,255)";
+    rotateBtn.style.backgroundColor = "rgb(255,255,255)";
+    offsetBtn.style.backgroundColor = "rgb(255,255,255)";
   });
 
   //eventlistenerOffset
   const offsetBtn = document.querySelector("#offset_btn");
   const rotateBtn = document.querySelector("#rotation_btn");
   const scaleBtn = document.querySelector("#scale_btn");
+
   offsetBtn.addEventListener("click", () => {
     gizmoManager.positionGizmoEnabled = !gizmoManager.positionGizmoEnabled;
     offsetBtn.style.backgroundColor = "rgb(66,49,137)";
     if (gizmoManager.positionGizmoEnabled) {
       gizmoManager.rotationGizmoEnabled = false;
       gizmoManager.scaleGizmoEnabled = false;
+      scaleBtn.style.backgroundColor = "rgb(255,255,255)";
+      rotateBtn.style.backgroundColor = "rgb(255,255,255)";
+      cursorBtn.style.backgroundColor = "rgb(255,255,255)";
     }
   });
 
@@ -77,6 +84,9 @@ const createScene = (canvas) => {
     if (gizmoManager.rotationGizmoEnabled) {
       gizmoManager.positionGizmoEnabled = false;
       gizmoManager.scaleGizmoEnabled = false;
+      scaleBtn.style.backgroundColor = "rgb(255,255,255)";
+      offsetBtn.style.backgroundColor = "rgb(255,255,255)";
+      cursorBtn.style.backgroundColor = "rgb(255,255,255)";
     }
   });
 
@@ -87,6 +97,9 @@ const createScene = (canvas) => {
     if (gizmoManager.scaleGizmoEnabled) {
       gizmoManager.positionGizmoEnabled = false;
       gizmoManager.rotationGizmoEnabled = false;
+      rotateBtn.style.backgroundColor = "rgb(255,255,255)";
+      offsetBtn.style.backgroundColor = "rgb(255,255,255)";
+      cursorBtn.style.backgroundColor = "rgb(255,255,255)";
     }
   });
 };
