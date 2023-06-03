@@ -1,10 +1,34 @@
 <template>
   <div class="q-pa-md q-gutter-y-md column items-start">
     <q-btn-group push>
-      <q-btn push label="Cursor" icon="near_me" />
-      <q-btn push label="Offset" icon="multiple_stop" />
-      <q-btn push label="Rotation" icon="360" />
-      <q-btn push label="Scaling" icon="aspect_ratio" />
+      <q-btn
+        push
+        label="Cursor"
+        icon="near_me"
+        id="cursor_btn"
+        style="background-color: #ffffff"
+      />
+      <q-btn
+        push
+        label="Offset"
+        icon="multiple_stop"
+        id="offset_btn"
+        style="background-color: #ffffff"
+      />
+      <q-btn
+        push
+        label="Rotation"
+        icon="360"
+        id="rotation_btn"
+        style="background-color: #ffffff"
+      />
+      <q-btn
+        push
+        label="Scaling"
+        icon="aspect_ratio"
+        id="scale_btn"
+        style="background-color: #ffffff"
+      />
     </q-btn-group>
   </div>
   <canvas ref="bjsCanvas" width="1300" height="500" />

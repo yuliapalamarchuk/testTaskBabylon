@@ -27,47 +27,54 @@ const createScene = (canvas) => {
     { width: 9, height: 8 },
     scene
   );
-  const box = MeshBuilder.CreateBox("box", { size: 3 }, scene);
+  const sphere = MeshBuilder.CreateSphere(
+    "sphere",
+    { diameter: 2, segments: 32 },
+    scene
+  );
 
-  box.rotation.z = Math.PI / 2;
-  box.position.y = 1;
-  const material = new StandardMaterial("box-material", scene);
+  sphere.rotation.z = Math.PI / 2;
+  sphere.position.y = 1;
+  const material = new StandardMaterial("sphere-material", scene);
   material.diffuseColor = Color3.Blue();
-  box.material = material;
-  box.position.y = 1;
+  sphere.material = material;
+  sphere.position.y = 1;
   //hello gizmo
   const utilLayer = new UtilityLayerRenderer(scene);
-  //offset
-  const gizmoOffset = new PositionGizmo(utilLayer);
-  gizmoOffset.attachedMesh = box;
-  gizmoOffset.updateGizmoRotationToMatchAttachedMesh = false;
-  gizmoOffset.updateGizmoPositionToMatchAttachedMesh = true;
-
-  //rotation
-  const gizmoRotate = new RotationGizmo(utilLayer);
-  gizmoRotate.attachedMesh = box;
-
-  gizmoRotate.updateGizmoRotationToMatchAttachedMesh = false;
-  gizmoRotate.updateGizmoPositionToMatchAttachedMesh = true;
-
-  document.onkeydown = () => {
-    gizmoRotate.attachedMesh = !gizmoRotate.attachedMesh ? box : null;
-  };
-
-  //scale
-  const gizmoScale = new ScaleGizmo(utilLayer);
-  gizmoScale.attachedMesh = box;
-
-  gizmoScale.updateGizmoRotationToMatchAttachedMesh = true;
-  gizmoScale.updateGizmoPositionToMatchAttachedMesh = true;
-
-  document.onkeydown = ()=>{
-    gizmoScale.attachedMesh = !gizmoScale.attachedMesh ? box : null
-}
 
   //visibility
   engine.runRenderLoop(() => {
     scene.render();
+  });
+
+  //eventlistenerOffset
+  const offsetBtn = document.querySelector("#offset_btn");
+  offsetBtn.addEventListener("click", () => {
+    const gizmoOffset = new PositionGizmo(utilLayer);
+    gizmoOffset.attachedMesh = sphere;
+    gizmoOffset.updateGizmoRotationToMatchAttachedMesh = false;
+    gizmoOffset.updateGizmoPositionToMatchAttachedMesh = true;
+    offsetBtn.style.backgroundColor = "rgb(66,49,137)";
+  });
+
+  //eventlistenerRotate
+  const rotateBtn = document.querySelector("#rotation_btn");
+  rotateBtn.addEventListener("click", () => {
+    const gizmoRotate = new RotationGizmo(utilLayer);
+    gizmoRotate.attachedMesh = sphere;
+    gizmoRotate.updateGizmoRotationToMatchAttachedMesh = false;
+    gizmoRotate.updateGizmoPositionToMatchAttachedMesh = true;
+    rotateBtn.style.backgroundColor = "rgb(66,49,137)";
+  });
+
+  //eventlistenerScale
+  const scaleBtn = document.querySelector("#scale_btn");
+  scaleBtn.addEventListener("click", () => {
+    const gizmoScale = new ScaleGizmo(utilLayer);
+    gizmoScale.attachedMesh = sphere;
+    gizmoScale.updateGizmoRotationToMatchAttachedMesh = true;
+    gizmoScale.updateGizmoPositionToMatchAttachedMesh = true;
+    scaleBtn.style.backgroundColor = "rgb(66,49,137)";
   });
 };
 
