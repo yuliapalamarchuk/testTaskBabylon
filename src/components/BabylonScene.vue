@@ -31,7 +31,31 @@
       />
     </q-btn-group>
   </div>
-  <canvas ref="bjsCanvas" width="1200" height="500" />
+
+  <!-- <div class="q-pa-md">
+    <div class="q-gutter-sm">
+      <q-radio v-model="shape" val="blur" label="Black" id="black_btn" />
+      <q-radio v-model="shape" val="red" label="Red" id="red_btn" />
+      <q-radio v-model="shape" val="yellow" label="Yellow" id="yellow_btn" />
+      <q-radio v-model="shape" val="green" label="Green" id="green_btn" />
+    </div>
+  </div> -->
+
+  <div class="q-pa-md">
+    <div class="q-gutter-sm">
+      <q-radio v-model="shape" val="sphere" label="Sphere" id="sphere_btn" />
+      <q-radio v-model="shape" val="box" label="Box" id="box_btn" />
+      <q-radio
+        v-model="shape"
+        val="cylinder"
+        label="Cylinder"
+        id="cylinder_btn"
+      />
+      <q-radio v-model="shape" val="torus" label="Torus" id="torus_btn" />
+    </div>
+  </div>
+
+  <canvas ref="bjsCanvas" style="width: 100%" class="q-pa-md" />
 </template>
 
 <script>

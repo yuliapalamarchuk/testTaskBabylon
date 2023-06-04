@@ -1,14 +1,13 @@
 <template>
-  <BabylonScene />
+  <router-view/>
 </template>
 
-<script>
-import BabylonScene from "./components/BabylonScene.vue";
 
-export default {
-  name: "App",
-  components: {
-    BabylonScene,
-  },
-};
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'App'
+})
 </script>

@@ -113,6 +113,95 @@ const createScene = (canvas) => {
         Color3.Blue()
       )
     );
+
+  const boxBtn = document.querySelector("#box_btn");
+  boxBtn.addEventListener("click", () => {
+    const box = MeshBuilder.CreateBox(
+      "box",
+      { height: 2, width: 2, depth: 2 },
+      scene
+    );
+    const materialBox = new StandardMaterial("box-material", scene);
+    materialBox.diffuseColor = Color3.Blue();
+    box.material = materialBox;
+
+    box.actionManager = new ActionManager(scene);
+    box.actionManager
+      .registerAction(
+        new InterpolateValueAction(
+          ActionManager.OnPickTrigger,
+          materialBox,
+          "diffuseColor",
+          new Color3("0, 0, 1")
+        )
+      )
+      .then(
+        new InterpolateValueAction(
+          ActionManager.OnPickTrigger,
+          materialBox,
+          "diffuseColor",
+          Color3.Blue()
+        )
+      );
+  });
+
+  const cylinderBtn = document.querySelector("#cylinder_btn");
+  cylinderBtn.addEventListener("click", () => {
+    const cylinder = MeshBuilder.CreateCylinder("cylinder", {}, scene);
+    const materialCylinder = new StandardMaterial("cylinder-material", scene);
+    materialCylinder.diffuseColor = Color3.Blue();
+    cylinder.material = materialCylinder;
+
+    cylinder.actionManager = new ActionManager(scene);
+    cylinder.actionManager
+      .registerAction(
+        new InterpolateValueAction(
+          ActionManager.OnPickTrigger,
+          materialCylinder,
+          "diffuseColor",
+          new Color3("0, 0, 1")
+        )
+      )
+      .then(
+        new InterpolateValueAction(
+          ActionManager.OnPickTrigger,
+          materialCylinder,
+          "diffuseColor",
+          Color3.Blue()
+        )
+      );
+  });
+
+  const torusBtn = document.querySelector("#torus_btn");
+  torusBtn.addEventListener("click", () => {
+    const torus = MeshBuilder.CreateTorus(
+      "torus",
+      { thickness: 1, diameter: 2 },
+      scene
+    );
+    const materialTorus = new StandardMaterial("torus-material", scene);
+    materialTorus.diffuseColor = Color3.Blue();
+    torus.material = materialTorus;
+
+    torus.actionManager = new ActionManager(scene);
+    torus.actionManager
+      .registerAction(
+        new InterpolateValueAction(
+          ActionManager.OnPickTrigger,
+          materialTorus,
+          "diffuseColor",
+          new Color3("0, 0, 1")
+        )
+      )
+      .then(
+        new InterpolateValueAction(
+          ActionManager.OnPickTrigger,
+          materialTorus,
+          "diffuseColor",
+          Color3.Blue()
+        )
+      );
+  });
 };
 
 export { createScene };

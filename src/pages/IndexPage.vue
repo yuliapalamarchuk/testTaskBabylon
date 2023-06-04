@@ -1,13 +1,9 @@
 <template>
   <q-page>
- 
+    <BabylonScene/>
   </q-page>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'IndexPage'
-})
+<script setup>
+import BabylonScene from "components/BabylonScene.vue";
 </script>
