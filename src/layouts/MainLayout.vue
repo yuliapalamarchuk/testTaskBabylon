@@ -7,7 +7,7 @@
       height-hint="61.59"
     >
       <q-toolbar class="q-py-sm q-px-md">
-        <div v-if="$q.screen.gt.sm">
+        <div >
           <h5>Welcome to Babylon App</h5>
         </div>
 

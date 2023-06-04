@@ -7,7 +7,7 @@
           label="Cursor"
           icon="near_me"
           id="cursor_btn"
-          style="background-color: #ffffff"
+          style="background-color: #423189"
         />
         <q-btn
           push
@@ -47,8 +47,10 @@
       </div>
     </div>
   </div>
-
-  <canvas ref="bjsCanvas" style="width: 100%" class="q-pa-md" />
+<div class="flex justify-center">
+<canvas ref="bjsCanvas" style="height: 65vh; width: 70%" class="q-pa-md flex justify-center" />
+</div>
+  
 </template>
 
 <script>

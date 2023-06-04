@@ -27,6 +27,11 @@ const createScene = (canvas) => {
     { width: 9, height: 8 },
     scene
   );
+
+  const groundMaterial = new StandardMaterial("material", scene);
+  ground.material = groundMaterial;
+  groundMaterial.diffuseColor = Color3.Red();
+
   const sphere = MeshBuilder.CreateSphere(
     "sphere",
     { diameter: 2, segments: 32 },
@@ -106,7 +111,7 @@ const createScene = (canvas) => {
         ActionManager.OnPickTrigger,
         material,
         "diffuseColor",
-        new Color3("0, 0, 1")
+        Color3.White()
       )
     )
     .then(
@@ -114,9 +119,29 @@ const createScene = (canvas) => {
         ActionManager.OnPickTrigger,
         material,
         "diffuseColor",
-        Color3.Blue()
+        Color3.Red()
       )
     );
+
+  ground.actionManager = new ActionManager(scene);
+  ground.actionManager
+    .registerAction(
+      new InterpolateValueAction(
+        ActionManager.OnPickTrigger,
+        groundMaterial,
+        "diffuseColor",
+        new Color3(0, 0, 1)
+      )
+    )
+    .then(
+      new InterpolateValueAction(
+        ActionManager.OnPickTrigger,
+        groundMaterial,
+        "diffuseColor",
+        Color3.Red()
+      )
+    );
+
   //по клику содается сфера
   // const sphereBtn = document.querySelector("#sphere_btn");
   // sphereBtn.addEventListener("click", () => {
