@@ -1,57 +1,50 @@
 <template>
-  <div class="q-pa-md q-gutter-y-md column items-start">
-    <q-btn-group push>
-      <q-btn
-        push
-        label="Cursor"
-        icon="near_me"
-        id="cursor_btn"
-        style="background-color: #ffffff"
-      />
-      <q-btn
-        push
-        label="Offset"
-        icon="multiple_stop"
-        id="offset_btn"
-        style="background-color: #ffffff"
-      />
-      <q-btn
-        push
-        label="Rotation"
-        icon="360"
-        id="rotation_btn"
-        style="background-color: #ffffff"
-      />
-      <q-btn
-        push
-        label="Scaling"
-        icon="aspect_ratio"
-        id="scale_btn"
-        style="background-color: #ffffff"
-      />
-    </q-btn-group>
-  </div>
-
-  <!-- <div class="q-pa-md">
-    <div class="q-gutter-sm">
-      <q-radio v-model="shape" val="blur" label="Black" id="black_btn" />
-      <q-radio v-model="shape" val="red" label="Red" id="red_btn" />
-      <q-radio v-model="shape" val="yellow" label="Yellow" id="yellow_btn" />
-      <q-radio v-model="shape" val="green" label="Green" id="green_btn" />
+  <div class="flex justify-center">
+    <div class="q-pa-md q-gutter-y-md column items-start">
+      <q-btn-group push>
+        <q-btn
+          push
+          label="Cursor"
+          icon="near_me"
+          id="cursor_btn"
+          style="background-color: #ffffff"
+        />
+        <q-btn
+          push
+          label="Offset"
+          icon="multiple_stop"
+          id="offset_btn"
+          style="background-color: #ffffff"
+        />
+        <q-btn
+          push
+          label="Rotation"
+          icon="360"
+          id="rotation_btn"
+          style="background-color: #ffffff"
+        />
+        <q-btn
+          push
+          label="Scaling"
+          icon="aspect_ratio"
+          id="scale_btn"
+          style="background-color: #ffffff"
+        />
+      </q-btn-group>
     </div>
-  </div> -->
 
-  <div class="q-pa-md">
-    <div class="q-gutter-sm">
-      <q-radio v-model="shape" val="sphere" label="Sphere" id="sphere_btn" />
-      <q-radio v-model="shape" val="box" label="Box" id="box_btn" />
-      <q-radio
-        v-model="shape"
-        val="cylinder"
-        label="Cylinder"
-        id="cylinder_btn"
-      />
-      <q-radio v-model="shape" val="torus" label="Torus" id="torus_btn" />
+    <div class="q-pa-md">
+      <div class="q-gutter-sm">
+        <q-radio v-model="shape" val="sphere" label="Sphere" id="sphere_btn" />
+        <q-radio v-model="shape" val="box" label="Box" id="box_btn" />
+        <q-radio
+          v-model="shape"
+          val="cylinder"
+          label="Cylinder"
+          id="cylinder_btn"
+        />
+        <q-radio v-model="shape" val="torus" label="Torus" id="torus_btn" />
+      </div>
     </div>
   </div>
 
@@ -75,7 +68,7 @@ export default {
 
     return {
       bjsCanvas,
-      shape: ref("line"),
+      shape: ref("sphere"),
     };
   },
 };

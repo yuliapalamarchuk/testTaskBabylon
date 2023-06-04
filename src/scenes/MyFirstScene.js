@@ -95,6 +95,10 @@ const createScene = (canvas) => {
     }
   });
 
+  let box;
+  let cylinder;
+  let torus;
+
   sphere.actionManager = new ActionManager(scene);
   sphere.actionManager
     .registerAction(
@@ -113,10 +117,24 @@ const createScene = (canvas) => {
         Color3.Blue()
       )
     );
+  //по клику содается сфера
+  // const sphereBtn = document.querySelector("#sphere_btn");
+  // sphereBtn.addEventListener("click", () => {
+  //   const sphere2 = MeshBuilder.CreateSphere(
+  //     "sphere",
+  //     { diameter: 2, segments: 32 },
+  //     scene
+  //   );
+  //   sphere2.rotation.z = Math.PI / 2;
+  //   sphere2.position.y = 1;
+  // });
 
   const boxBtn = document.querySelector("#box_btn");
   boxBtn.addEventListener("click", () => {
-    const box = MeshBuilder.CreateBox(
+    scene.removeMesh(sphere);
+    scene.removeMesh(torus);
+    scene.removeMesh(cylinder);
+    box = MeshBuilder.CreateBox(
       "box",
       { height: 2, width: 2, depth: 2 },
       scene
@@ -147,7 +165,10 @@ const createScene = (canvas) => {
 
   const cylinderBtn = document.querySelector("#cylinder_btn");
   cylinderBtn.addEventListener("click", () => {
-    const cylinder = MeshBuilder.CreateCylinder("cylinder", {}, scene);
+    scene.removeMesh(sphere);
+    scene.removeMesh(box);
+    scene.removeMesh(torus);
+    cylinder = MeshBuilder.CreateCylinder("cylinder", {}, scene);
     const materialCylinder = new StandardMaterial("cylinder-material", scene);
     materialCylinder.diffuseColor = Color3.Blue();
     cylinder.material = materialCylinder;
@@ -174,7 +195,10 @@ const createScene = (canvas) => {
 
   const torusBtn = document.querySelector("#torus_btn");
   torusBtn.addEventListener("click", () => {
-    const torus = MeshBuilder.CreateTorus(
+    scene.removeMesh(sphere);
+    scene.removeMesh(box);
+    scene.removeMesh(cylinder);
+    torus = MeshBuilder.CreateTorus(
       "torus",
       { thickness: 1, diameter: 2 },
       scene
