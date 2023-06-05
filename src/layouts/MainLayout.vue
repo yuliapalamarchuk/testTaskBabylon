@@ -7,19 +7,16 @@
       height-hint="61.59"
     >
       <q-toolbar class="q-py-sm q-px-md">
-        <div >
+        <div>
           <h5>Welcome to Babylon App</h5>
         </div>
-
         <q-space />
-
         <div class="q-pl-sm q-gutter-sm row items-center no-wrap">
           <q-btn dense flat no-wrap>
             <div>
               <p>About App</p>
               <q-icon name="arrow_drop_down" size="36px" />
             </div>
-
             <q-menu auto-close>
               <q-list dense>
                 <q-item>

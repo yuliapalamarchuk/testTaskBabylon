@@ -47,10 +47,13 @@
       </div>
     </div>
   </div>
-<div class="flex justify-center">
-<canvas ref="bjsCanvas" style="height: 65vh; width: 70%" class="q-pa-md flex justify-center" />
-</div>
-  
+  <div class="flex justify-center">
+    <canvas
+      ref="bjsCanvas"
+      style="height: 65vh; width: 70%"
+      class="q-pa-md flex justify-center"
+    />
+  </div>
 </template>
 
 <script>
